@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <h2>Form control: input</h2>
+    <p>The form below contains two input elements; one of type text and one of type password:</p>
+    <form class="form-horizontal" action="#" th:action="@{/testsetup/save}"
+          th:object="${test}" method="POST">
+        <input type="hidden" th:field="*{id}"/>
+        <div class="form-group">
+
+            <label for="typeName">Test Type:</label>
+            <input type="text" class="form-control" id="typeName" th:field="*{testName}"placeholder="Type Name">
+        </div>
+        <div class="form-group">
+            <label for="fee" class="col-sm-3 col-form-label">Fee</label>
+            <div class="col-sm-9">
+                <input type="text" th:field="*{fee} " class="form-control" id="fee" placeholder="Fee in BDT">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 col-form-label">Test Type</label>
+            <div class="col-sm-9">
+                <select type="text" th:field ="*{testTypeSetup}"  class="form-control">
+                    <option value="">choose..</option>
+                    <option th:each="testtype: ${testTypeList}"
+                            th:value="${testtype.id}"
+                            th:text="${testtype.typeName}"></option>
+                </select>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+</body>
+</html>
